@@ -61,6 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     body{
         background: url("pics/IMG_0427.JPG");
         background-repeat: repeat-x;
+        background-size: cover;
     }
 
 
