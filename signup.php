@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 <style type="text/css">
     body{
         background: url("pics/IMG_0427.JPG");
-        opacity: ;
+        background-repeat: repeat-once;
     }
 
 
