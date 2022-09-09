@@ -47,34 +47,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 }
 
 
- //not parsing inputs
-
-//   if (isset($_POST['submit'])) {
-
-//     $CourseCode = $_POST['CourseCode'];
-
-//     $CourseTitle = $_POST['CourseTitle'];
-
-//     $Units = $_POST['Units'];
-//   }
-
-//     $sql = "INSERT INTO coursereg (CourseCode, CourseTitle, Units) 
-//     VALUES ('$CourseCode','$CourseTitle','$Units')";
-
-//     $result = $conn->query($sql);
-
-//     if ($result == TRUE) {
-
-//       echo "New record created successfully.";
-
-//     }else{
-
-//       echo "Error:". $sql . "<br>". $conn->error;
-
-//     } 
-
-//     $conn->close(); 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
