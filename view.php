@@ -1,87 +1,83 @@
 <?php 
 
-include "config.php";
-
-$sql = "SELECT * FROM coursereg";
-
-$result = $conn->query($sql);
-
+include ("config.php");
 ?>
 
 <!DOCTYPE html>
-
 <html>
 
-<head>
+  <head>
 
-    <title>View Page</title>
+        <title>View Page</title>
+  
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    </head>
 
-</head>
+  <body>
 
-<body>
+        <div class="container">
 
-    <div class="container">
+           <h2>Course Registration Form</h2>
 
-        <h2>Course Registration Form</h2>
+         <table class="table">
+               <thead>
 
-<table class="table">
+                   <tr>
+    
+                      <th>ID</th>
 
-    <thead>
+                      <th>Course Code</th>
 
-        <tr>
+                      <th>Course Title</th>
 
-        <th>ID</th>
+                      <th>Units</th>
 
-        <th>Course Code</th>
+                      <th>Action</th>
+                  </tr>
+               </thead>
 
-        <th>Course Title</th>
+               <tbody>
+               <?php
+                     $sql = "SELECT * FROM coursereg";
 
-        <th>Units</th>
+                       $result = mysqli_query($conn, $sql);
+                          if($result){
+                             while($row=mysqli_fetch_assoc($result)){
+                                 $id=$row['id'];
+                                 $CourseCode=$row['CourseCode'];
+                                 $CourseTitle=$row['CourseTitle'];
+                                 $Units=$row['Units'];
 
-        <th>Action</th>
+                                echo '<tr>
+                                         <th scope="row">'. $id .'</th>
+                                            <td> ' . $CourseCode .'</td>
+                                            <td> ' . $CourseTitle .'</td>
+                                            <td> ' . $Units .'</td>
+                                            <td>
+                                               <button class="btn btn-success "><a href="update.php?updateid='.$id.'"
+                                                class="text-light">Update</a></button>
+                                               <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'"
+                                               class="text-light">Delete</a></button>
+                                             </td>
 
-    </tr>
+                                      </tr>';
+                            }
+                         }
 
-    </thead>
+                ?>
 
-    <tbody> 
 
-        <?php
+               </tbody>
+          </table>
 
-            if ($result->num_rows > 0) {
+        </div> 
 
-                while ($row = $result->fetch_assoc()) {
-
-        ?>
-
-                    <tr>
-
-                    <td><?php echo $row['id']; ?></td>
-
-                    <td><?php echo $row['CourseCode']; ?></td>
-
-                    <td><?php echo $row['CourseTitle']; ?></td>
-
-                    <td><?php echo $row['Units']; ?></td>
-
-                    <td><a class="btn btn-info" href="update.php?id=<?php echo $row['id']; ?>">Edit</a>&nbsp;<a class="btn btn-danger" href="delete.php?id=<?php echo $row['id']; ?>">Delete</a></td>
-
-                    </tr>                       
-
-        <?php       }
-
-            }
-
-        ?>                
-
-    </tbody>
-
-</table>
-
-    </div> 
-
-</body>
-
+    </body>
 </html>
+
+
+
+
+
+   

@@ -1,103 +1,68 @@
 <?php 
 
    include "config.php";
-   $CourseCode ="";
-   $CourseTitle ="";
-   $Units ="";
+  
 
- //updating data to the database
-    if (isset($_POST['update'])) {
+   $id=$_GET['updateid'];
+   $sql= "SELECT *FROM coursereg Where id='$id'";
+   $result=mysqli_query($conn, $sql);
+   $row=mysqli_fetch_assoc($result);
+   $CourseCode=$row['CourseCode'];
+   $CourseTitle=$row['CourseTitle'];
+   $Units=$row['Units'];
 
-        $user_id = $_POST['id'];
+if(isset($_POST['submit'])){
+  $CourseCode =$_POST['CourseCode'];
+  $CourseTitle =$_POST['CourseTitle'];
+  $Units =$_POST['Units'];
 
-        $CourseCode = $_POST['CourseCode'];
+  header('location:view.php');
+  $sql="UPDATE coursereg SET id='$id', CourseCode='$CourseCode', CourseTitle='$CourseTitle', Units='$Units' 
+  WHERE id='$id'";
 
-        $CourseTitle = $_POST['Course Title'];
+  $result=mysqli_query($conn, $sql);
+  if($result){
+    echo "Updated successfully";
+  }else{
+    die(mysqli_error($conn));
 
-        $Units = $_POST['Units']; 
+  }
+}
+?>
 
-        $sql = "UPDATE 'coursereg' SET  'CourseCode'='$CourseCode','CourseTitle'='$CourseTitle','Units'='$Units' WHERE `id`='$user_id'"; 
 
-        $result = $conn->query($sql); 
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Update</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+ </head>
+ <body>
+     <h2>Course Registration Form</h2>
+     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+           <fieldset>
+             Course Code: <br>
+             <input type="text" name="CourseCode" required value="<?php echo $CourseCode;?>">
+             <br>
 
-        if ($result == TRUE) {
+             Course Title: <br>
+             <input type="text" name="CourseTitle" required value="<?php echo $CourseTitle;?>">
+             <br>
 
-            echo "Record updated successfully.";
+             Units: <br>
+             <input type="number" name="Units" required value="<?php echo $Units;?>">
+             <br>
+             
+             <input type="submit" name="Update" value="Update"> 
+           </fieldset>
+          
+     </form>
 
-        }else{
+ </body>
+</html>
 
-            echo "Error:" . $sql . "<br>" . $conn->error;
 
-        }
 
-    } 
-
-  //fetching data from the database
-  if (isset($_GET['id'])) {
-
-      $user_id = $_GET['id']; 
-
-      $sql = "SELECT * FROM coursereg WHERE 'id'='$user_id'";
-
-      $result = $conn->query($sql); 
-
-        if ($result->num_rows > 0) {        
-
-            while ($row = $result->fetch_assoc()) {
-               $id = $row['user_id'];
-
-               $CourseCode = $row['CourseCode'];
-
-               $CourseTitle = $row['CourseTitle'];
-
-               $Units = $row['Units'];
-
-            } 
-        }
-    }
-
-    ?>
-
-        <h2> Update Course</h2>
-
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
-          <fieldset>
-
-            Course Code:<br>
-
-            <input type="text" name="CourseCode" value="<?php echo $CourseCode; ?>">
-
-            <input type="hidden" name="user_id" value="<?php echo $id; ?>">
-
-            <br>
-
-            Course Title:<br>
-
-            <input type="text" name="CourseTitle" value="<?php echo $CourseTitle; ?>">
-
-            <br>
-
-            Units:<br>
-
-            <input type="number" name="Units" value="<?php echo $Units; ?>">
-
-           
-            <br><br>
-            <!-- <button onclick="location.href='view.php'">Update</button> -->
-            <input type="submit" value="Update" name="Update">
-
-          </fieldset>
-
-        </form> 
-
-        </body>
-
-        </html> 
-
-        <?php
-            //  header('Location: view.php');
-        ?> 
-
-    
- 
