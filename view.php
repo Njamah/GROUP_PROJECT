@@ -39,7 +39,7 @@ include ("config.php");
 
                <tbody>
                <?php
-                     $sql = "SELECT * FROM coursereg";
+                     $sql = "SELECT *FROM coursereg";
 
                        $result = mysqli_query($conn, $sql);
                           if($result){
@@ -55,7 +55,7 @@ include ("config.php");
                                             <td> ' . $CourseTitle .'</td>
                                             <td> ' . $Units .'</td>
                                             <td>
-                                               <button class="btn btn-success "><a href="update.php?updateid='.$id.'"
+                                               <button class="btn btn-success"><a href="update.php?updateid='.$id.'"
                                                 class="text-light">Update</a></button>
                                                <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'"
                                                class="text-light">Delete</a></button>

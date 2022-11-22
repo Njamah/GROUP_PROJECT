@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-<table class="table table border w-75 mt-3 ms-3 bg-success text-white  table-hover">
+<table class="table table border w-75 mt-3 m-auto bg-dark text-white">
   <thead>
     <tr>
       <th scope="col">S/N</th>
@@ -54,14 +54,14 @@
     </tr>
 
     <tfoot>
-      <th colspan="2">No. of Courses:5</th>
+      <th colspan="2">No. of Courses: 5</th>
       <th>Total Units:</th>
       <th>13</th>
     </tfoot>
   
   </tbody>
 </table>
-<button onclick="location.href='create.php'" >Register Courses</button>
+<button  class="btn btn-light m-auto border-dark"onclick="location.href='create.php'" >Register Courses</button>
 
 
 
